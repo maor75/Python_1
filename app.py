@@ -2,6 +2,13 @@ import json
 import os
 import sys
 
+from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+db = SQLAlchemy(app)
+
 
 path2 = os.path.join(sys.path[0], "id test")
 path = os.path.join(sys.path[0], "data test")
