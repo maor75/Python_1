@@ -1,5 +1,5 @@
 from class_usr_serch import UserDatabase
-
+#from "filename" without ".py" import "class_name"
 
 
 # Example usage:
