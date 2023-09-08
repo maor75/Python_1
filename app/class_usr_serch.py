@@ -54,43 +54,45 @@ class UserDatabase:
         except mysql.connector.Error as err:
             print(f"Error: {err}")
 
-# Example usage:
-db = UserDatabase()
 
-# Get user by ID
-user_id = input("Enter the ID: ")
-name_and_last_name = db.get_by_id(user_id)
+if __name__ == "__main__":
+ # Example usage:
+ db = UserDatabase()
 
-if name_and_last_name:
+ # Get user by ID
+ user_id = input("Enter the ID: ")
+ name_and_last_name = db.get_by_id(user_id)
+
+ if name_and_last_name:
     first_name, last_name = name_and_last_name
     print(f"First Name: {first_name}")
     print(f"Last Name: {last_name}")
-else:
+ else:
     print("No matching record found for the provided ID.")
 
-# Search by first name
-search_first_name = input("Enter the first name to search: ")
-results = db.get_by_name(search_first_name)
+ # Search by first name
+ search_first_name = input("Enter the first name to search: ")
+ results = db.get_by_name(search_first_name)
 
-if results:
+ if results:
     print("Matching users by first name:")
     for result in results:
         user_id, first_name, last_name = result
         print(f"ID: {user_id}, First Name: {first_name}, Last Name: {last_name}")
-else:
+ else:
     print("No matching records found for the provided first name.")
 
-# Search by last name
-search_last_name = input("Enter the last name to search: ")
-results = db.get_by_last_name(search_last_name)
+ # Search by last name
+ search_last_name = input("Enter the last name to search: ")
+ results = db.get_by_last_name(search_last_name)
 
-if results:
+ if results:
     print("Matching users by last name:")
     for result in results:
         user_id, first_name, last_name = result
         print(f"ID: {user_id}, First Name: {first_name}, Last Name: {last_name}")
-else:
+ else:
     print("No matching records found for the provided last name.")
 
-# Close the database connection
-db.close_connection()
+ # Close the database connection
+ db.close_connection()
