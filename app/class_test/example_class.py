@@ -1,6 +1,6 @@
 from class_usr_serch import UserDatabase
 #from "filename" without ".py" import "class_name"
-
+#you need to use "from classes import . או קלאס ספסיפי במקרה ועובדים רק עליו"
 
 # Example usage:
 db = UserDatabase()
@@ -19,3 +19,6 @@ else:
 
 # Close the database connection
 db.close_connection()
+
+#db.the def name בשביל להשתמש בפונקציה שאנחנו צריכים
+#db = "class_name" בגלל זה אנחנו קוראים לו ד.ב. נקדוה השם של הפונקציה
