@@ -1,4 +1,43 @@
-<!DOCTYPE html>
+import eel 
+import mysql.connector
+
+path = r"C:\Users\avita\OneDrive\Desktop\Python_1\app\web_app\web1"
+eel.init(path)
+
+eel.start("main.html", size=(700,700))
+
+
+
+# Connect to the MySQL database
+conn = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="edmon",
+    database="project"
+)
+
+# Retrieve the data from the database
+sql = """
+SELECT *
+FROM sell
+JOIN user ON sell.user_id = user.iduser
+JOIN product ON sell.product = product.idproduct
+"""
+           
+cursor = conn.cursor()
+cursor.execute(sql)
+print(sql)
+# Create an HTML table
+table_data = []
+for row in cursor:
+    table_data.append(row)
+
+# Close the connection to the MySQL database
+conn.close()
+
+# Create an HTML file
+with open("sell.html", "w") as f:
+    f.write("""<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -113,7 +152,23 @@ h2 a {
 .container td:nth-child(4),
 .container th:nth-child(4) { display: none; }
 }
-</style><h1><span class="blue">&lt;</span>Table<span class="blue">&gt;</span> <span class="yellow">Responsive</pan></h1>
-
+</style>""")
+    f.write("""<h1><span class="blue">&lt;</span>Table<span class="blue">&gt;</span> <span class="yellow">Responsive</pan></h1>
     <h2>Created with love by <a href="https://github.com/pablorgarcia" target="_blank">Pablo García</a></h2>
-  <table class="container"><thead><tr></tr></thead><tbody></tbody></table>
+  """)
+    f.write('<table class="container">')
+    f.write("<thead>")
+    f.write("<tr>")
+    for column in cursor.column_names:
+        f.write("<th><h1>" + column + "</h1></th>")
+    f.write("</tr>")
+    f.write("</thead>")
+    f.write("<tbody>")
+    for row in table_data:
+        f.write("<tr>")
+        for cell in row:
+            f.write("<td>" + cell + "</td>")
+        f.write("</tr>")
+    f.write("</tbody>")
+    f.write("</table>")
+   
