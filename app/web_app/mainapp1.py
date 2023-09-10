@@ -25,11 +25,11 @@ FROM sell
 JOIN user ON sell.user_id = user.iduser
 JOIN product ON sell.product_id = product.idproduct
 WHERE sell.user_id = user.iduser
-AND sell.product_id = product.idproduct = %s
+AND sell.product_id = product.idproduct
 """
            
-cursor = conn.cursor()
-cursor.execute(sql, (str(product_id),))
+cursor = conn.cursor("sell")
+cursor.execute(sql)
 conn.commit()
 
 
