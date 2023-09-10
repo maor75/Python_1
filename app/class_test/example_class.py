@@ -6,8 +6,8 @@ from class_usr_serch import UserDatabase
 db = UserDatabase()
 
 # Search by first name
-search_first_name = input("Enter the first name to search: ")
-results = db.get_by_name(search_first_name)
+search_by_first_name = input("Enter the first name to search: ")
+results = db.get_by_name(search_by_first_name)
 
 if results:
     print("Matching users by first name:")
