@@ -115,7 +115,8 @@ class SellDatabase:
                 return None
         except mysql.connector.Error as err:
             print(f"Error: {err}")
-
+    
+    
 # Example usage:
 if __name__ == "__main__":
     sell_db = SellDatabase()
