@@ -1,0 +1,21 @@
+#בהמשך צריך בשביל שטבלת מחסן תעבוד כראוי צריך יהיה להוסיף פקודה נוספת לכל הוספה אל טבלת הקניות ולכל טבלת ההספקה
+
+#הסופה להספקה ועדכון מחסן
+-- When receiving a new order
+INSERT INTO Orders (product_id, quantity_received, order_date)
+VALUES (product_id, quantity_received, order_date);
+
+-- Update the Supplies table to increase quantity_in_stock
+UPDATE Supplies
+SET quantity_in_stock = quantity_in_stock + quantity_received
+WHERE product_id = product_id;
+
+#הוספה למכירות ועדכון המחסן 
+-- When a sale occurs
+INSERT INTO Sales (product_id, quantity_sold, sale_date)
+VALUES (product_id, quantity_sold, sale_date);
+
+-- Update the Supplies table to decrease quantity_in_stock
+UPDATE Supplies
+SET quantity_in_stock = quantity_in_stock - quantity_sold
+WHERE product_id = product_id;
